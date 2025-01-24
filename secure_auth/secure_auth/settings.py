@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'djoser',
     'social_django',
     'rest_framework_simplejwt',
+    
+    # Apps
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -83,12 +86,12 @@ WSGI_APPLICATION = 'secure_auth.wsgi.application'
 # Database  PostgreSQL
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME', default=''),
-        'USER': config('DB_USER', default=''),
-        'PASSWORD': config('DB_PASSWORD', default=''),
-        'HOST': config('DB_HOST', default=''),
-        'PORT': config('DB_PORT', default=''),
+        'ENGINE': 'django.db.backends.postgresql', 
+        'NAME': config('DB_NAME'),  
+        'USER': config('DB_USER'),  
+        'PASSWORD': config('DB_PASSWORD'),  
+        'HOST': config('DB_HOST'), 
+        'PORT': config('DB_PORT', default='5432'), 
     }
 }
 
