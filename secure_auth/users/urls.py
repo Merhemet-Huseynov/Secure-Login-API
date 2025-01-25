@@ -1,9 +1,9 @@
-from django.urls import path, include
+from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("auth/", include("djoser.urls")),
-    path("auth/", include("djoser.urls.jwt")),
-    path("google/", views.google_login, name="google_login"),
-    path("profile/", views.UserProfile.as_view(), name="user_profile"),  # Burada .as_view() əlavə olunub
+    path("register/", views.UserRegistration.as_view(), name="user_register"),
+    path("login/", views.UserLogin.as_view(), name="user_login"),
+    path("google/", views.GoogleLogin.as_view(), name="google_login"),
+    path("profile/", views.UserProfile.as_view(), name="user_profile"),
 ]
