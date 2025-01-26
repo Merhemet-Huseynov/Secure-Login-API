@@ -1,9 +1,9 @@
 from django.urls import path
-from . import views
+from .views import UserRegistration, UserLogin, GoogleLogin, UserProfile
 
 urlpatterns = [
-    path("register/", views.UserRegistration.as_view(), name="user_register"),
-    path("login/", views.UserLogin.as_view(), name="user_login"),
-    path("google/", views.GoogleLogin.as_view(), name="google_login"),
-    path("profile/", views.UserProfile.as_view(), name="user_profile"),
+    path("auth/register/", UserRegistration.as_view(), name="user_register"),
+    path("auth/login/", UserLogin.as_view(), name="user_login"),
+    path("auth/google/", GoogleLogin.as_view(), name="google_login"),
+    path("auth/profile/", UserProfile.as_view(), name="user_profile"),
 ]

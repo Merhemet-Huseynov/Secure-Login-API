@@ -7,6 +7,8 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
 from .models import CustomUser
 from .serializers import UserSerializer, UserProfileSerializer
+from social_django.utils import load_backend, load_strategy
+from social_django.utils import psa
 
 # Registration endpoint
 class UserRegistration(APIView):
@@ -43,7 +45,21 @@ class UserLogin(APIView):
 # Google Login endpoint (as defined in previous steps)
 class GoogleLogin(APIView):
     def get(self, request):
-        return social_auth(request, "google-oauth2")
+        backend = 'google-oauth2'
+        try:
+            # Perform the social authentication process
+            user = psa(request.backend).complete(request=request, backend=backend)
+            
+            if user:
+                refresh = RefreshToken.for_user(user)
+                return Response({
+                    "refresh": str(refresh),
+                    "access": str(refresh.access_token),
+                }, status=status.HTTP_200_OK)
+            else:
+                return Response({"error": "Authentication failed."}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class UserProfile(APIView):
