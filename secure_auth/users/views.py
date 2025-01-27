@@ -7,7 +7,6 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
 from .models import CustomUser
 from .serializers import UserSerializer, UserProfileSerializer
-from social_django.utils import load_backend, load_strategy
 from social_django.utils import psa
 
 # Registration endpoint
@@ -70,7 +69,7 @@ class UserProfile(APIView):
         return Response({
             "username": request.user.username,
             "email": request.user.email
-        }, status=200)
+        }, status=status.HTTP_200_OK)
 
     def put(self, request):
         user = request.user
@@ -81,4 +80,4 @@ class UserProfile(APIView):
         return Response({
             "username": user.username,
             "email": user.email
-        }, status=200)
+        }, status=status.HTTP_200_OK)

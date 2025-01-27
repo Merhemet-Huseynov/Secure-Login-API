@@ -9,9 +9,10 @@ djangorestframework = "*"
 psycopg2 = "*"
 djoser = "*"
 djangorestframework-simplejwt = "*"
-social-auth-app-django = "*"
 python-decouple = "*"
 drf-yasg = "*"
+social-auth-core = "*"
+social-auth-app-django = "*"
 
 [dev-packages]
 
